@@ -30,6 +30,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    /* сообщаем nuxt чтобы на сервере этот плагин не инициализировался */
+    {src: '@/plugins/socket.js', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules

@@ -14,10 +14,15 @@
     "nuxt": "^2.0.0",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
-    "@nuxtjs/pwa": "^3.0.0-0"
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "vuetify": "latest",
+    "consola": "latest",
+    "vue-socket.io": "latest",
+    "vue": "latest"
   },
   "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0",
     "nodemon": "^1.18.9",
-    "@nuxtjs/vuetify": "^1.0.0"
+    "socket.io": "^2.3.0"
   }
 }
