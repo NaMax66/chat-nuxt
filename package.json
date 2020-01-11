@@ -11,14 +11,15 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "consola": "latest",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "vuetify": "latest",
-    "consola": "latest",
+    "nuxt": "^2.0.0",
+    "vue": "latest",
     "vue-socket.io": "latest",
-    "vue": "latest"
+    "vuelidate": "^0.7.4",
+    "vuetify": "latest"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0",
