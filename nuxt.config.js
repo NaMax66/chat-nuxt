@@ -31,7 +31,8 @@ module.exports = {
   */
   plugins: [
     /* сообщаем nuxt чтобы на сервере этот плагин не инициализировался */
-    {src: '@/plugins/socket.js', ssr: false}
+    {src: '@/plugins/socket.js', ssr: false},
+    {src: '@/plugins/icons.js', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules

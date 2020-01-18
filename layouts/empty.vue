@@ -4,7 +4,7 @@
   <v-app app dark>
     <v-content>
       <v-container fluid>
-        <nuxt />
+        <nuxt></nuxt>
       </v-container>
     </v-content>
   </v-app>
