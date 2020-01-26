@@ -21,6 +21,7 @@
               required
               @input="$v.room.$touch()"
               @blur="$v.room.$touch()"
+              @keyup.enter="submit"
             ></v-text-field>
             <v-btn class="mr-4" color="primary" :disabled="!valid" @click="submit">Enter</v-btn>
             <v-btn @click="clear">clear</v-btn>
@@ -85,11 +86,21 @@
           name: this.name,
           room: this.room
         }
-        /* вызываем мутацию */
-        this.setUser(user)
+        /* передаем на сервер объект с данными пользователя */
+        /* третий объект - это функция, которая будет вызвана после того как серер выполнит действия */
+        this.$socket.emit('userJoined', user, data => {
+          if (typeof data === 'string') {
+            /* если ответ приходит в виде строки - значит это ошибка */
+            console.error(data)
+          } else {
+            /* вызываем мутацию */
+            this.setUser(user)
 
-        /* открываем страницу чат */
-        this.$router.push('/chat')
+            /* открываем страницу чат */
+            this.$router.push('/chat')
+          }
+        })
+
       },
       clear() {
         this.$v.$reset()

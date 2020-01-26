@@ -27,7 +27,7 @@
       </v-btn>
       <v-toolbar-title>Чат комнаты: {{ user.room }}</v-toolbar-title>
     </v-toolbar>
-      <div>
+      <div style="height: calc(100% - 56px)">
         <nuxt></nuxt>
       </div>
     </v-content>
