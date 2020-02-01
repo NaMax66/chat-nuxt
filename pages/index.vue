@@ -2,6 +2,20 @@
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8>
       <v-card min-width="400">
+        <v-snackbar
+          v-model="snackbar"
+          :timeout="6000"
+          top
+        >
+          {{ message }}
+          <v-btn
+            dark
+            text
+            @click="snackbar = false"
+          >
+            Закрыть
+          </v-btn>
+        </v-snackbar>
         <v-card-title><h1>Nuxt chat</h1></v-card-title>
         <v-card-text>
           <v-form ref='form' v-model="valid">
@@ -35,12 +49,12 @@
 <script>
   import { validationMixin } from "vuelidate"
   import { required, maxLength, minLength } from "vuelidate/lib/validators"
-  import { mapMutations } from 'vuex'
+  import { mapMutations } from "vuex"
 
   export default {
     /* Определяет содержимое тега head */
     head: {
-      title: 'Welcome to Nuxt Chat!'
+      title: "Welcome to Nuxt Chat!"
     },
     layout: "empty",
     sockets: {
@@ -58,7 +72,9 @@
     data: () => ({
       name: "",
       room: "",
-      valid: false
+      valid: false,
+      snackbar: false,
+      message: ''
     }),
 
     computed: {
@@ -77,9 +93,20 @@
         return errors
       }
     },
-
+    mounted () {
+      /* Получаем данные из адресной строки */
+      const {message} = this.$route.query
+      if (message === 'noUser') {
+        this.message = 'Введите данные'
+      }
+      if (message === 'leftChat') {
+        this.message = 'Вы вышли из чата'
+      }
+      // приводим к булеву
+      this.snackbar = !!this.message
+    },
     methods: {
-      ...mapMutations(['setUser']),
+      ...mapMutations(["setUser"]),
       submit() {
         this.$v.$touch()
         const user = {
@@ -88,16 +115,17 @@
         }
         /* передаем на сервер объект с данными пользователя */
         /* третий объект - это функция, которая будет вызвана после того как серер выполнит действия */
-        this.$socket.emit('userJoined', user, data => {
-          if (typeof data === 'string') {
+        this.$socket.emit("userJoined", user, data => {
+          if (typeof data === "string") {
             /* если ответ приходит в виде строки - значит это ошибка */
             console.error(data)
           } else {
+            user.id = data.userId
             /* вызываем мутацию */
             this.setUser(user)
 
             /* открываем страницу чат */
-            this.$router.push('/chat')
+            this.$router.push("/chat")
           }
         })
 

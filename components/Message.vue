@@ -28,18 +28,18 @@
 
 <style lang="stylus" scoped>
   .system {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem
 
     p {
-      margin-bottom: 1rem;
+      margin-bottom: 1rem
     }
   }
   .wrap {
-    display flex;
-    flex-direction: column;
+    display flex
+    flex-direction: column
   }
   .msg {
-    padding: 1rem;
+    padding: 1rem
     width 60%
     margin 0 1rem
     box-shadow 0 1px 0 0 rgba(50 50 50 .3)
